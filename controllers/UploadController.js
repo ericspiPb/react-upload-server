@@ -1,6 +1,6 @@
 exports.index = function(req, res) {
   if (!req.files || Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
+    return res.status(400).json({msg: 'No files were uploaded.'});
   }
 
   const file = req.files.file;
@@ -12,6 +12,6 @@ exports.index = function(req, res) {
       res.status(500).send(err);
     }
 
-    res.json({filename: file.name, path: `/uploads/${file.name}`});
+    res.json({filename: file.name, filepath: `/uploads/${file.name}`});
   });
 }
